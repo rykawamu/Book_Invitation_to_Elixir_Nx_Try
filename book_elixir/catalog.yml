@@ -7,8 +7,8 @@ CHAPS:
 # プロローグ
   - prologue.re
 
-# iexの使い方（補完、リストの全表示）
-#  - iex_helper.re
+# Nxについて
+  - nx.re
 
 # パターンマッチ
 # パイプ演算子の効能
@@ -45,7 +45,7 @@ CHAPS:
 APPENDIX:
 
 # Elixirのインストールについて（余裕があれば）
-# - install.re
+- install.re
 
 
 POSTDEF:
