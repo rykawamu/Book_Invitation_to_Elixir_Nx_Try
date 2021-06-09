@@ -47,6 +47,9 @@ APPENDIX:
 # Elixirのインストールについて（余裕があれば）
 - install.re
 
+#Elixirの理解を深めたい場合
+- omake.re
+
 
 POSTDEF:
 # あとがき

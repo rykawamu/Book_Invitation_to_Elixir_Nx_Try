@@ -4,12 +4,12 @@
 
 == Nxとは
 
-Nxは、Elixirの作者であるJosé Valim氏肝煎りのプロジェクトです。
+Nxは、Elixirの作者であるJosé Valim氏の肝煎りプロジェクトです。
 Elixirを動かすために必要なErlangにプルリクエストを投げてNxが性能を出せるようにした、という程に肝煎りです。
 言語の作者本人が作成しているので、ライブラリのフォローなどの保証は十分にあると考えて良いでしょう。
 
 
-===[column] Nxのマスコット「ウォンバット」
+===[column] コラム：Nxのマスコット「ウォンバット」
 
 Nxのプロジェクトのマスコットは「ウォンバット」と呼ばれる動物です。
 絶滅の危機に瀕しているらしく、募金が集められたいます。
@@ -43,7 +43,7 @@ end
 なお、本書ではすべての関数は紹介しません。というよりも、しきれません。
 代表的なものをご紹介しますので、興味のある方はより深く調査してみてください。
 
-=== テンソルを作成する関数
+== テンソルを作成する関数
 
 関数として、以下の7つが用意されています。
 
@@ -57,83 +57,83 @@ end
 
 このうち、本書では「tensor/2」「from_binary/2」「iota/2」「eye/2」の4つを紹介します。
 
-==== Nx.tensor/2
+=== Nx.tensor/2
 
 Builds a tensor.（310行目）
 
 
-==== from_binary/2
+=== from_binary/2
 
 Creates a one-dimensional tensor from a `binary` with the given `type`.（1071行目）
 
-==== iota/2
+=== iota/2
 
 Creates a tensor with the given shape which increments along the provided axis. You may optionally provide dimension  names.（865行目）
 
-====  eye/2
+===  eye/2
 
 Creates the identity matrix of size `n`.（993行目）
 
-=== テンソルに対して計算処理を行う関数
+== テンソルに対して計算処理を行う関数
 
-==== Nx.type
+=== Nx.type
 
 2187
 
-==== compatible?
+=== compatible?
 
 2211
 
-==== shape
+=== shape
 
 2261
 
-==== size
+=== size
 
 2320
 
-==== add
+=== add
 
 加算：2561
 
-==== subtract
+=== subtract
 
 引き算：2680
 
-==== multiply
+=== multiply
 
 掛け算：2745
 
-==== power
+=== power
 
 階乗：2810
 
-==== Remainder
+=== Remainder
 
 余：2879
 
-==== divide
+=== divide
 
 除算：2908
 
-==== quotient
+=== quotient
 
 商：2988
 
-==== max
+=== max
 
 3123
 
-==== min
+=== min
 
 3188
 
-==== sum
+=== sum
 
 4633
 
 
-===[column] Nx.expについて
+===[column] コラム：Nx.expについて
 
 ソフトマックス関数で利用した「Nx.exp」については、実はNxの関数ではありません。
 
