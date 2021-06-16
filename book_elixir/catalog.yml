@@ -4,10 +4,13 @@ PREDEF:
 
 CHAPS:
 
+# Nxってなんだろう
+  - what_is_nx.re
+
 # プロローグ
   - prologue.re
 
-# Nxについて
+# Nxで利用fできる関数について
   - nx.re
 
 # パターンマッチ
