@@ -12,7 +12,11 @@ Nxとは、プログラミング言語Elixir用の@<b>{テンソルライブラ�
 
 呼び方は「@<b>{エヌエックス}」が一般的です。
 
-#@# ※ここに、マスコットキャラのウォンバットの画像を載せるか？。
+ロゴには、一見するとリスにも見えるマスコットキャラ「@<b>{ヌンバット}」が描かれています。
+
+//indepimage[numbat_01][Nxのロゴ（GitHub公式ページより拝借）][scale=0.5]{
+//}
+
 
 //footnote[nx_descr][公式ページでは、「Multi-dimensional arrays (tensors) and numerical definitions for Elixir」と紹介されています。]
 
@@ -28,22 +32,38 @@ Nxとは、プログラミング言語Elixir用の@<b>{テンソルライブラ�
 
 多次元配列とは何かといえば、以下のようなものになります。
 
-@<m>{\begin{bmatrix\} a & b \\\\ c & d \\\\ \end{bmatrix\}}
+//blankline
+
+@<m>{\begin{bmatrix\} a & b & c \\\\ d & e & f \\\\ \end{bmatrix\}}
+
+//blankline
 
 Nxは、Elixirの作者である@<b>{José Valim}氏の肝いりプロジェクトです。
 Elixirを動かすために必要な@<b>{Erlang}@<fn>{erlang}にプルリクエストを投げてNxが性能を出せるようにした、という程の力の入れようです。
 言語の作者本人が作成しているので、ライブラリのフォローなどの保証は十分にあると考えて良いでしょう。
 
-//footnote[erlang][Erlang：アーランと呼びます。ElixirはErlang VM上で動くプログラム言語です。]
-
-
 次の章では、Nxを利用して、実際にテンソルの計算をしてみましょう。
 
-===[column] コラム：Nxのマスコット「ウォンバット」
+//footnote[erlang][「アーラン」と呼びます。ElixirはErlang VM上で動くプログラム言語です。]
 
-Nxのプロジェクトのマスコットは「ウォンバット」と呼ばれる動物です。
-絶滅の危機に瀕しているらしく、募金が集められたいます。
 
-（→以前書いたブログの内容を少し直して載せる。）
+===[column] コラム：Nxのマスコット「ヌンバット」
+
+Nxのプロジェクトのマスコットは「Numbat（ヌンバット）」と呼ばれる動物です。
+一見するとリスのようですが、和名だと「フクロアリクイ」と呼ばれています。
+
+//indepimage[numbat_02][実際のヌンバット][scale=0.5]{
+//}
+
+ヌンバットは、オーストラリア南部原産の有袋類です。
+絶滅の危機（推定では1000頭以下）に瀕しているらしく、募金が集められています。
+
+NxのReadmeでも、「@<i>{このプロジェクトをお楽しみになられた方は、Project Numbat}@<fn>{numbat_hogo_1}@<i>{やAustralian Wildlife Conservancy}@<fn>{numbat_hogo_2}@<i>{などのNumbatの保護活動への寄付をご検討ください。}」との記述があります。
+
+もし、サポートしたいと思われた方は寄付してみてはいかがでしょうか。@<fn>{numbat_hogo_3}
 
 ===[/column]
+
+//footnote[numbat_hogo_1][@<href>{https://www.numbat.org.au/}]
+//footnote[numbat_hogo_2][@<href>{https://www.australianwildlife.org/}]
+//footnote[numbat_hogo_3][ただ、日本から寄付するのは面倒かもしれません。以前、Project NumbatからPayPal経由で寄付しようとしたら、『この国からの寄付には対応してません』的なメッセージが出て寄付できませんでした。]
