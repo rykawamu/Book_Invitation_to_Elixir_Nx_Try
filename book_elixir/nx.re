@@ -343,9 +343,48 @@ iex> Nx.subtract(5, Nx.tensor([[1,2,3],[4,5,6]]))
 >
 //}
 
-=== multiply
+=== Nx.multiply/2
 
-掛け算：2745
+引数へ2つのテンソルを渡して、要素ごとに乗算します。
+
+2つのテンソルの次元次元・形状が異なっていても、ブロードキャスト演算が可能であれば計算されます。
+
+//list[nx_multiply_01_1][テンソルの乗算：スカラー]{
+iex> Nx.multiply(2,3)
+#Nx.Tensor<
+  s64
+  6
+>
+//}
+
+//list[nx_multiply_02][テンソルの乗算：ベクトル]{
+iex> Nx.multiply(Nx.tensor([1,2,3]), Nx.tensor([5,7,9]))
+#Nx.Tensor<
+  s64[3]
+  [5, 14, 27]
+>
+//}
+
+//list[nx_multiply_03][テンソルの乗算：ブロードキャスト演算]{
+iex> Nx.multiply(Nx.tensor([[1,2,3],[4,5,6]]), 5)
+#Nx.Tensor<
+  s64[2][3]
+  [
+    [5, 10, 15],
+    [20, 25, 30]
+  ]
+>
+
+iex> Nx.multiply(5.0, Nx.tensor([[1,2,3],[4,5,6]]))
+#Nx.Tensor<
+  f32[2][3]
+  [
+    [5.0, 10.0, 15.0],
+    [20.0, 25.0, 30.0]
+  ]
+>
+//}
+
 
 === power
 
