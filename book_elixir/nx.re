@@ -168,9 +168,150 @@ Creates the identity matrix of size `n`.（993行目）
 
 2320
 
-=== add
+=== Nx.add/2
 
-加算：2561
+引数へ2つのテンソルを渡して、要素ごとに加算します。
+
+2つのテンソルの次元が異なっていても、ブロードキャスト@<fn>{broadcasting}演算が可能であれば計算されます。
+
+//footnote[broadcasting][ブロードキャスト（broadcasting）とは、テンソルの次元・形状が異なる場合でも、条件に合致するならば自動で次元・形状を合わせて計算処理する仕組みです。]
+
+
+//list[nx_add_01_1][テンソルの加算：スカラー]{
+iex> Nx.add(1,2)
+#Nx.Tensor<
+  s64
+  3
+>
+//}
+
+//list[nx_add_02][テンソルの加算：ベクトル]{
+iex> t1 = Nx.tensor([1,2,3])
+#Nx.Tensor<
+  s64[3]
+  [1, 2, 3]
+>
+
+iex> t2 = Nx.tensor([4,5,6])
+#Nx.Tensor<
+  s64[3]
+  [4, 5, 6]
+>
+
+iex> Nx.add(t1, t2)
+#Nx.Tensor<
+  s64[3]
+  [5, 7, 9]
+>
+//}
+
+//list[nx_add_03][テンソルの加算：行列]{
+iex> t3 = Nx.tensor([[1,2,3],[4,5,6]])
+#Nx.Tensor<
+  s64[2][3]
+  [
+    [1, 2, 3],
+    [4, 5, 6]
+  ]
+>
+
+iex> t4 = Nx.tensor([[7,8,9],[10,11,12]])
+#Nx.Tensor<
+  s64[2][3]
+  [
+    [7, 8, 9],
+    [10, 11, 12]
+  ]
+>
+
+iex> Nx.add(t3, t4)
+#Nx.Tensor<
+  s64[2][3]
+  [
+    [8, 10, 12],
+    [14, 16, 18]
+  ]
+>
+//}
+
+//list[nx_add_04_1][テンソルの加算：ブロードキャスト演算]{
+iex> Nx.add(Nx.tensor([4,5,6]),3)
+#Nx.Tensor<
+  s64[3]
+  [7, 8, 9]
+>
+
+iex> Nx.add(Nx.tensor([[1,2],[3,4]]),Nx.tensor([5,6]))
+#Nx.Tensor<
+  s64[2][2]
+  [
+    [6, 8],
+    [8, 10]
+  ]
+>
+//}
+
+//list[nx_add_04_2][テンソルの加算：ブロードキャスト演算に失敗]{
+iex> l3 = [[[1, 2], [3, 4], [5, 6]], [[-1, -2], [-3, -4], [-5, -6]]]
+[[[1, 2], [3, 4], [5, 6]], [[-1, -2], [-3, -4], [-5, -6]]]
+
+iex> tl3 = Nx.tensor(l3)
+#Nx.Tensor<
+  s64[2][3][2]
+  [
+    [
+      [1, 2],
+      [3, 4],
+      [5, 6]
+    ],
+    [
+      [-1, -2],
+      [-3, -4],
+      [-5, -6]
+    ]
+  ]
+>
+
+iex> Nx.add(tl3, Nx.tensor(1))
+#Nx.Tensor<
+  s64[2][3][2]
+  [
+    [
+      [2, 3],
+      [4, 5],
+      [6, 7]
+    ],
+    [
+      [0, -1],
+      [-2, -3],
+      [-4, -5]
+    ]
+  ]
+>
+
+iex> Nx.add(tl3, Nx.tensor([1,2]))
+#Nx.Tensor<
+  s64[2][3][2]
+  [
+    [
+      [2, 4],
+      [4, 6],
+      [6, 8]
+    ],
+    [
+      [0, 0],
+      [-2, -2],
+      [-4, -4]
+    ]
+  ]
+>
+
+iex> Nx.add(tl3, Nx.tensor([1,2,3]))
+** (ArgumentError) cannot broadcast tensor of dimensions {2, 3, 2} to {3}
+    (nx 0.1.0-dev) lib/nx/shape.ex:310: Nx.Shape.binary_broadcast/4
+    (nx 0.1.0-dev) lib/nx.ex:2575: Nx.element_wise_bin_op/4
+//}
+
 
 === subtract
 
