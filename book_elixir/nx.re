@@ -172,7 +172,7 @@ Creates the identity matrix of size `n`.（993行目）
 
 引数へ2つのテンソルを渡して、要素ごとに加算します。
 
-2つのテンソルの次元が異なっていても、ブロードキャスト@<fn>{broadcasting}演算が可能であれば計算されます。
+2つのテンソルの次元・形状が異なっていても、ブロードキャスト@<fn>{broadcasting}演算が可能であれば計算されます。
 
 //footnote[broadcasting][ブロードキャスト（broadcasting）とは、テンソルの次元・形状が異なる場合でも、条件に合致するならば自動で次元・形状を合わせて計算処理する仕組みです。]
 
@@ -313,9 +313,47 @@ iex> Nx.add(tl3, Nx.tensor([1,2,3]))
 //}
 
 
-=== subtract
+=== Nx.subtract/2
 
-引き算：2680
+引数へ2つのテンソルを渡して、要素ごとに減算します。
+
+2つのテンソルの次元次元・形状が異なっていても、ブロードキャスト演算が可能であれば計算されます。
+
+//list[nx_subtract_01_1][テンソルの減算：スカラー]{
+iex> Nx.subtract(1,2)
+#Nx.Tensor<
+  s64
+  -1
+>
+//}
+
+//list[nx_subtract_02][テンソルの減算：ベクトル]{
+iex> Nx.subtract(Nx.tensor([1,2,3]), Nx.tensor([5,7,9]))
+#Nx.Tensor<
+  s64[3]
+  [-4, -5, -6]
+>
+//}
+
+//list[nx_subtract_03][テンソルの減算：ブロードキャスト演算]{
+iex> Nx.subtract(Nx.tensor([[1,2,3],[4,5,6]]), 5)
+#Nx.Tensor<
+  s64[2][3]
+  [
+    [-4, -3, -2],
+    [-1, 0, 1]
+  ]
+>
+
+iex> Nx.subtract(5, Nx.tensor([[1,2,3],[4,5,6]]))
+#Nx.Tensor<
+  s64[2][3]
+  [
+    [4, 3, 2],
+    [1, 0, -1]
+  ]
+>
+//}
 
 === multiply
 
