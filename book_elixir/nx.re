@@ -186,19 +186,7 @@ iex> Nx.add(1,2)
 //}
 
 //list[nx_add_02][テンソルの加算：ベクトル]{
-iex> t1 = Nx.tensor([1,2,3])
-#Nx.Tensor<
-  s64[3]
-  [1, 2, 3]
->
-
-iex> t2 = Nx.tensor([4,5,6])
-#Nx.Tensor<
-  s64[3]
-  [4, 5, 6]
->
-
-iex> Nx.add(t1, t2)
+iex> Nx.add(Nx.tensor([1,2,3]), Nx.tensor([4,5,6]))
 #Nx.Tensor<
   s64[3]
   [5, 7, 9]
