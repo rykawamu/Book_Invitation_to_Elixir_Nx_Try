@@ -390,9 +390,53 @@ iex> Nx.multiply(5.0, Nx.tensor([[1,2,3],[4,5,6]]))
 
 階乗：2810
 
-=== Remainder
+=== Nx.remainder/2
 
-余：2879
+引数へ2つのテンソルを渡して、要素ごとに剰余を算出します。
+
+2つのテンソルの次元次元・形状が異なっていても、ブロードキャスト演算が可能であれば計算されます。
+
+//list[nx_remainder_01_1][テンソルの剰余：スカラー]{
+iex> Nx.remainder(10,4)
+#Nx.Tensor<
+  s64
+  2
+>
+
+iex> Nx.remainder(4,10)
+#Nx.Tensor<
+  s64
+  4
+>
+//}
+
+//list[nx_remainder_02][テンソルの剰余：ベクトル]{
+iex> Nx.remainder(Nx.tensor([1,2,3]), Nx.tensor([5,7,9]))
+#Nx.Tensor<
+  s64[3]
+  [1, 2, 3]
+>
+
+iex> Nx.remainder(Nx.tensor([5,7,9]), Nx.tensor([1,2,3]))
+#Nx.Tensor<
+  s64[3]
+  [0, 1, 0]
+>
+//}
+
+//list[nx_remainder_03][テンソルの剰余：ブロードキャスト演算]{
+iex> Nx.remainder(20, Nx.tensor([3,5,15]) )
+#Nx.Tensor<
+  s64[3]
+  [2, 0, 5]
+>
+
+iex> Nx.remainder(Nx.tensor([3,5,15]), 20)
+#Nx.Tensor<
+  s64[3]
+  [3, 5, 15]
+>
+//}
 
 === divide
 
