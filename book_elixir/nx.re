@@ -142,9 +142,180 @@ iex> Nx.tensor(t3)
 
 Creates a one-dimensional tensor from a `binary` with the given `type`.（1071行目）
 
-=== iota/2
+=== Nx.iota/2
 
-Creates a tensor with the given shape which increments along the provided axis. You may optionally provide dimension  names.（865行目）
+#@# Creates a tensor with the given shape which increments along the provided axis. You may optionally provide dimension  names.（865行目）
+
+指定された@<b>{軸}（axis）に沿って増分する、指定された形状のテンソルを作成します。
+
+オプションで次元名を指定することもできます。
+
+軸が指定されていない場合、indexは各要素でカウントアップされます。
+
+テンソルまたは数値が指定された場合、形状と名前はテンソルから取得されます。
+
+//list[nx_iota_01][増分するテンソルを作る1：タプルの利用]{
+iex> Nx.iota({})
+#Nx.Tensor<
+  s64
+  0
+>
+
+iex> Nx.iota({1})
+#Nx.Tensor<
+  s64[1]
+  [0]
+>
+
+iex> Nx.iota({1,2})
+#Nx.Tensor<
+  s64[1][2]
+  [
+    [0, 1]
+  ]
+>
+
+iex> Nx.iota({1,2,3})
+#Nx.Tensor<
+  s64[1][2][3]
+  [
+    [
+      [0, 1, 2],
+      [3, 4, 5]
+    ]
+  ]
+>
+
+iex> Nx.iota({3,3,3})
+#Nx.Tensor<
+  s64[3][3][3]
+  [
+    [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8]
+    ],
+    [
+      [9, 10, 11],
+      [12, 13, 14],
+      [15, 16, 17]
+    ],
+    [
+      [18, 19, 20],
+      [21, 22, 23],
+      [24, 25, 26]
+    ]
+  ]
+>
+//}
+
+既存のテンソルを利用して、新しいテンソルを作成。形状と名前は引き継がれるが、タイプは引き継がれなかった。
+
+//list[nx_iota_02][増分するテンソルを作る2：テンソルの利用]{
+iex> t_iota_1 = Nx.tensor([2,4,6,8.0], names: [:even])
+#Nx.Tensor<
+  f32[even: 4]
+  [2.0, 4.0, 6.0, 8.0]
+>
+
+iex> Nx.iota(t_iota_1)
+#Nx.Tensor<
+  s64[even: 4]
+  [0, 1, 2, 3]
+>
+//}
+
+軸を指定することで、作成されるテンソルのindeの値に変化がみえる。
+
+//list[nx_iota_03][増分するテンソルを作る2：軸の指定]{
+iex> Nx.iota({3, 3, 3})
+#Nx.Tensor<
+  s64[3][3][3]
+  [
+    [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8]
+    ],
+    [
+      [9, 10, 11],
+      [12, 13, 14],
+      [15, 16, 17]
+    ],
+    [
+      [18, 19, 20],
+      [21, 22, 23],
+      [24, 25, 26]
+    ]
+  ]
+>
+
+iex> Nx.iota({3, 3, 3}, axis: 0)
+#Nx.Tensor<
+  s64[3][3][3]
+  [
+    [
+      [0, 0, 0],
+      [0, 0, 0],
+      [0, 0, 0]
+    ],
+    [
+      [1, 1, 1],
+      [1, 1, 1],
+      [1, 1, 1]
+    ],
+    [
+      [2, 2, 2],
+      [2, 2, 2],
+      [2, 2, 2]
+    ]
+  ]
+>
+
+iex> Nx.iota({3, 3, 3}, axis: 1)
+#Nx.Tensor<
+  s64[3][3][3]
+  [
+    [
+      [0, 0, 0],
+      [1, 1, 1],
+      [2, 2, 2]
+    ],
+    [
+      [0, 0, 0],
+      [1, 1, 1],
+      [2, 2, 2]
+    ],
+    [
+      [0, 0, 0],
+      [1, 1, 1],
+      [2, 2, 2]
+    ]
+  ]
+>
+
+iex> Nx.iota({3, 3, 3}, axis: 2)
+#Nx.Tensor<
+  s64[3][3][3]
+  [
+    [
+      [0, 1, 2],
+      [0, 1, 2],
+      [0, 1, 2]
+    ],
+    [
+      [0, 1, 2],
+      [0, 1, 2],
+      [0, 1, 2]
+    ],
+    [
+      [0, 1, 2],
+      [0, 1, 2],
+      [0, 1, 2]
+    ]
+  ]
+>
+//}
 
 ===  eye/2
 
