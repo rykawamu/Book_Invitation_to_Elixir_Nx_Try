@@ -152,9 +152,58 @@ Creates the identity matrix of size `n`.（993行目）
 
 == テンソルに対して計算処理を行う関数
 
-=== Nx.type
+=== Nx.type/1
 
-2187
+引数で渡されたテンソルの型を返す。
+
+数値を直接渡した場合でも処理は可能。
+
+//list[nx_type_01_1][テンソルを判定する：2次元テンソル]{
+iex> t_type_1a = Nx.tensor([[1,2],[3,4]])
+#Nx.Tensor<
+  s64[2][2]
+  [
+    [1, 2],
+    [3, 4]
+  ]
+>
+
+iex> Nx.type(t_type_1a)
+{:s, 64}
+//}
+
+//list[nx_type_01_2][テンソルを判定する：型指定したテンソルの確認]{
+iex> t_type_1b = Nx.tensor([[1,2],[3,4]], type: {:f, 32})
+#Nx.Tensor<
+  f32[2][2]
+  [
+    [1.0, 2.0],
+    [3.0, 4.0]
+  ]
+>
+//}
+
+//list[nx_type_02_1][テンソルを判定する：スカラーの場合]{
+iex> Nx.type(Nx.tensor(10))
+{:s, 64}
+iex> Nx.type(Nx.tensor(10.1))
+{:f, 32}
+//}
+
+//list[nx_type_02_2][テンソルを判定する：数値の場合はそのまま引数に渡せる]{
+iex> Nx.type(10)
+{:s, 64}
+
+iex> Nx.type(10.1)
+{:f, 32}
+//}
+
+//list[nx_type_03][テンソルを判定する：テンソルになっていない場合はエラー]{
+iex> Nx.type([1,2,3])
+** (ArgumentError) expected a %Nx.Tensor{} or a number, got: [1, 2, 3]
+    (nx 0.1.0-dev) lib/nx.ex:1170: Nx.to_tensor/1
+    (nx 0.1.0-dev) lib/nx.ex:2217: Nx.type/1
+//}
 
 === compatible?
 
