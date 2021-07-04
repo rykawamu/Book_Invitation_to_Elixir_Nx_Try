@@ -391,9 +391,49 @@ iex(254)> Nx.shape({0})
     (nx 0.1.0-dev) lib/nx/shape.ex:35: Nx.Shape.validate!/3
 //}
 
-=== size
+=== Nx.size/1
 
-2320
+テンソルの@<b>{ランク}を返します。
+
+形状としてタプルが与えられている場合、与えられたタプルのランクを計算します。
+
+//list[nx_size_01][テンソルのランク確認1：テンソルを渡す]{
+iex> Nx.rank(Nx.tensor(1))
+0
+
+iex> Nx.rank(Nx.tensor([1,2,3]))
+1
+
+iex> Nx.rank(Nx.tensor([[1,2,3],[4,5,6]]))
+2
+
+iex> Nx.rank(Nx.tensor([[1,2,3],[4,5,6],[7,8,9]]))
+2
+
+iex> Nx.rank(Nx.tensor([[[1,2,3],[4,5,6]],[[7,8,9],[10,11,12]]]))
+3
+//}
+
+//list[nx_size_02][テンソルのランク確認2：タプルを渡す]{
+ex> Nx.shape({})
+{}
+
+iex> Nx.shape({2})
+{2}
+
+iex> Nx.shape({4,2})
+{4, 2}
+
+iex> Nx.shape({1,4,2})
+{1, 4, 2}
+//}
+
+//list[nx_size_03][テンソルのランク確認3：例外発生]{
+iex(254)> Nx.shape({0})
+** (ArgumentError) invalid dimension in axis 0 in shape.
+ Each dimension must be a positive integer, got 0 in shape {0}
+    (nx 0.1.0-dev) lib/nx/shape.ex:35: Nx.Shape.validate!/3
+//}
 
 === Nx.add/2
 
