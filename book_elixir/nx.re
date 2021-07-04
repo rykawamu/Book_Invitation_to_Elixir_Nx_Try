@@ -653,9 +653,61 @@ iex> Nx.multiply(5.0, Nx.tensor([[1,2,3],[4,5,6]]))
 //}
 
 
-=== power
+=== Nx.power/2
 
-階乗：2810
+2つのテンソルの要素ごとの累乗を返します。
+
+数値が与えられた場合、それはテンソルに変換されます。
+
+次元が一致せず、ブロードキャストが可能な場合は常にテンソルをブロードキャストします。次元が一致せず、ブロードキャストが可能な場合、テンソルをブロードキャストします。
+
+両方のテンソルが整数で、指数が負の場合は、負であればレイズします。一方、コンパイラによっては未定義の動作を引き起こす可能性があります。
+
+//list[nx_power_01][テンソルの累乗1：スカラーの累乗]{
+iex> Nx.power(2, 4)
+#Nx.Tensor<
+  s64
+  16
+>
+
+iex> Nx.power(3, 4)
+#Nx.Tensor<
+  s64
+  81
+>
+//}
+
+//list[nx_power_02][テンソルの累乗2：テンソルの累乗]{
+iex> Nx.power(Nx.tensor([[1,2,3],[4,5,6]]), 4)
+#Nx.Tensor<
+  s64[2][3]
+  [
+    [1, 16, 81],
+    [256, 625, 1296]
+  ]
+>
+//}
+
+//list[nx_power_03][テンソルの累乗3：ブロードキャスト演算]{
+iex> Nx.power(Nx.tensor([[3], [5]]), Nx.tensor([[4, 5]]))
+#Nx.Tensor<
+  s64[2][2]
+  [
+    [81, 243],
+    [625, 3125]
+  ]
+>
+//}
+
+//list[nx_power_04][テンソルの累乗4：指数が負の場合]{
+iex> Nx.power(Nx.tensor([[1,2,3],[4,5,6]]), -1)
+** (ArithmeticError) bad argument in arithmetic expression
+    (elixir 1.12.1) lib/integer.ex:106: Integer.pow(1, -1)
+    (nx 0.1.0-dev) lib/nx/binary_backend.ex:635:
+      Nx.BinaryBackend."-element_wise_bin_op/4-lbc$^16/2-8-"/7
+    (nx 0.1.0-dev) lib/nx/binary_backend.ex:634:
+      Nx.BinaryBackend.element_wise_bin_op/4
+//}
 
 === Nx.remainder/2
 
