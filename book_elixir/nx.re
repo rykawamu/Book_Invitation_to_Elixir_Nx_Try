@@ -324,9 +324,72 @@ iex> Nx.compatible?(
 false
 //}
 
-=== shape
+=== Nx.shape/1
 
-2261
+引数で渡されたテンソルの形状を、タプルで返します。
+タプル形式で渡された場合には、そのタプルをそのまま返します。
+
+//list[nx_shape_01][テンソルの形状確認1]{
+iex> Nx.shape(1)
+{}
+
+iex> Nx.shape(Nx.tensor(1))
+{}
+
+iex> Nx.shape(Nx.tensor([1]))
+{1}
+
+iex> Nx.shape(Nx.tensor([1,2,3]))
+{3}
+
+iex> Nx.shape(Nx.tensor([[1,2,3],[4,5,6]]))
+{2, 3}
+//}
+
+3次元のテンソルを渡してみる。
+
+//list[nx_shape_02][テンソルの形状確認2]{
+iex> Nx.tensor([[[1,2],[3,4],[5,6],[7,8]]])
+#Nx.Tensor<
+  s64[1][4][2]
+  [
+    [
+      [1, 2],
+      [3, 4],
+      [5, 6],
+      [7, 8]
+    ]
+  ]
+>
+
+iex> Nx.shape(Nx.tensor([[[1,2],[3,4],[5,6],[7,8]]]))
+{1, 4, 2}
+//}
+
+タプル形式を引数に渡してみる。
+
+//list[nx_shape_03][テンソルの形状確認3]{
+iex> Nx.shape({})
+{}
+
+iex> Nx.shape({2})
+{2}
+
+iex> Nx.shape({4,2})
+{4, 2}
+
+iex> Nx.shape({1,4,2})
+{1, 4, 2}
+//}
+
+テンソル形式にできないタプルの場合はエラーとなる。
+
+//list[nx_shape_04][テンソルの形状確認4]{
+iex(254)> Nx.shape({0})
+** (ArgumentError) invalid dimension in axis 0 in shape. 
+       Each dimension must be a positive integer, got 0 in shape {0}
+    (nx 0.1.0-dev) lib/nx/shape.ex:35: Nx.Shape.validate!/3
+//}
 
 === size
 
