@@ -205,9 +205,124 @@ iex> Nx.type([1,2,3])
     (nx 0.1.0-dev) lib/nx.ex:2217: Nx.type/1
 //}
 
-=== compatible?
+=== Nx.compatible?/2
 
-2211
+引数で渡した2つのテンソルが、同じ形状／タイプか、そして互換性のある名前を持っているかチェックします。
+
+なお、テンソル内のデータはチェックされません。
+
+//list[nx_compatible_01][テンソルが同じ形状／タイプか判定する：テンソルを渡す1]{
+iex> t_compati_1 = Nx.tensor([[1,2],[3,4]])
+#Nx.Tensor<
+  s64[2][2]
+  [
+    [1, 2],
+    [3, 4]
+  ]
+>
+
+iex> t_compati_2 = Nx.tensor([[5,6],[7,8]])
+#Nx.Tensor<
+  s64[2][2]
+  [
+    [5, 6],
+    [7, 8]
+  ]
+>
+
+iex> Nx.compatible?(t_compati_1, t_compati_2)
+true
+//}
+
+テンソルのタイプが同じでも、形状が異なればfalseを返す。
+
+//list[nx_compatible_02][テンソルが同じ形状／タイプか判定する：テンソルを渡す2]{
+iex> t_compati_1 = Nx.tensor([[1,2],[3,4]])
+#Nx.Tensor<
+  s64[2][2]
+  [
+    [1, 2],
+    [3, 4]
+  ]
+>
+
+iex> t_compati_3 = Nx.tensor([[1,2],[3,4],[5,6]])
+#Nx.Tensor<
+  s64[3][2]
+  [
+    [1, 2],
+    [3, 4],
+    [5, 6]
+  ]
+>
+
+iex> Nx.compatible?(t_compati_1, t_compati_3)
+false
+//}
+
+テンソルの形状が同じでも、タイプが異なればfalseを返す。
+
+//list[nx_compatible_03][テンソルが同じ形状／タイプか判定する：テンソルを渡す3]{
+iex> t_compati_1 = Nx.tensor([[1,2],[3,4]])
+#Nx.Tensor<
+  s64[2][2]
+  [
+    [1, 2],
+    [3, 4]
+  ]
+>
+
+iex> t_compati_4 = Nx.tensor([[1.0, 2.0],[3,4]])
+#Nx.Tensor<
+  f32[2][2]
+  [
+    [1.0, 2.0],
+    [3.0, 4.0]
+  ]
+>
+
+iex> Nx.compatible?(t_compati_1, t_compati_4)
+false
+//}
+
+以下の例では、前者は形状／タイプが同じになるが、後者の場合はタイプが変わる。
+
+//list[nx_compatible_04][テンソルが同じ形状／タイプか判定する：数値を渡す]{
+iex> Nx.compatible?(1, 3)
+true
+
+iex> Nx.compatible?(1, 1.0)
+false
+//}
+
+両方とも名前なしの場合、もしくは片方飲み名前がある場合は、同じと判定。
+
+//list[nx_compatible_05_1][テンソルが同じ形状／タイプか判定する：名前の際による判定結果1]{
+iex> Nx.compatible?(Nx.iota({3, 2}), Nx.iota({3, 2}))
+true
+
+iex> Nx.compatible?(
+...>   Nx.iota({3, 2}),
+...>   Nx.iota({3, 2},names: [:rows, :columns])
+...> )
+true
+//}
+
+片方の名前がnilの場合は同一と判定される。ただし、両方に名前が振られていおり、かつ異なる名前の場合は同じではないと判定される。
+
+//list[nx_compatible_05_2][テンソルが同じ形状／タイプか判定する：名前の際による判定結果2]{
+iex> Nx.compatible?(
+...>   Nx.iota({3, 2},names: [nil, :columns]),
+...>   Nx.iota({3, 2},names: [:rows, nil])
+...> )
+true
+
+iex> Nx.compatible?(
+...>   Nx.iota({3, 2},names: [:rows, :columns]),
+...>   Nx.iota({3, 2},names: [:gyo, :columns])
+...> )
+false
+//}
 
 === shape
 
