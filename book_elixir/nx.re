@@ -140,7 +140,54 @@ iex> Nx.tensor(t3)
 
 === from_binary/2
 
-Creates a one-dimensional tensor from a `binary` with the given `type`.（1071行目）
+#@# Creates a one-dimensional tensor from a `binary` with the given `type`.（1071行目）
+
+バイナリ@<fn>{binary}と型を引数にして、1次元のテンソルを作成します。
+
+バイナリに合わない型を指定すると、例外が発生します。
+
+//list[nx_from_binary_01][バイナリでテンソルを作る1]{
+iex> Nx.from_binary(<<100>>, {:s, 8})
+#Nx.Tensor<
+  s8[1]
+  [100]
+>
+
+iex> Nx.from_binary(<<12.4::float-64-native>>, {:f, 64})
+#Nx.Tensor<
+  f64[1]
+  [12.4]
+>
+//}
+
+//list[nx_from_binary_02][バイナリでテンソルを作る2]{
+iex> Nx.from_binary(<<104,111,103>>, {:s, 8})
+#Nx.Tensor<
+  s8[3]
+  [104, 111, 103, 101, 0]
+>
+//}
+
+文字列もバイナリであるので、文字列とバイナリを連結して渡すことも可能。
+
+//list[nx_from_binary_03][バイナリでテンソルを作る3]{
+iex> Nx.from_binary("hoge" <> <<0>>, {:s, 8})
+#Nx.Tensor<
+  s8[5]
+  [104, 111, 103, 101, 0]
+>
+//}
+
+合わない型を指定した場合は、例外が発生します。
+
+//list[nx_from_binary_04][バイナリでテンソルを作る4：エラー発生]{
+iex> Nx.from_binary(<<104,111,103>>, {:f, 32})
+** (ArgumentError) binary does not match the given size
+    (nx 0.1.0-dev) lib/nx.ex:1109: Nx.from_binary/3
+//}
+
+
+//footnote[binary][Elixirのバイナリとは、バイトのシーケンスです。1バイトでは、0から255の数値を表現します。Elixirでは、文字列もバイナリです。]
 
 === Nx.iota/2
 
