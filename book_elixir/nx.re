@@ -2,13 +2,17 @@
 
 本章では、Nxで利用できる関数を紹介します。
 
-== defnについて
-
 == 使い方
+
+使い方には、以下の２つがあります。
+
+ * mixプロジェクトを作成する場合
+ * exsで利用する場合
+
 
 === mixプロジェクトを作成する場合
 
-従来通り、mixプロジェクトを作成して利用する場合には、ファイル@<b>{mix.exs}中の@<b>{def deps do}の定義内で、以下の設定を追記する。
+従来通り、mixプロジェクトを作成して利用する場合には、ファイル@<b>{mix.exs}中の@<b>{def deps do}の定義内で、以下の設定を追記します。
 
 //list[nx_setting_mix][mix.exsでNxを設定する]{
 def deps do
@@ -18,7 +22,45 @@ def deps do
 end
 //}
 
+こちらの方法では、iexも利用できるので便利です。
+
+作成したmixプロジェクトの直下のディレクトリへ移動して、コマンド@<b>{iex -S mix}を実行します。
+すると、iexが開くので、自由にNxの動作確認ができます。
+
+//list[nx_setting_mix_iex][mixプロジェクトをiexで読み出す]{
+$iex -S mix
+Erlang/OTP 24 [erts-12.0.2] [source] [64-bit]
+   [smp:4:4] [ds:4:4:10] [async-threads:1] [jit]
+
+Interactive Elixir (1.12.1) - press Ctrl+C to exit
+                            (type h() ENTER for help)
+iex> Nx.tensor([10,11])
+#Nx.Tensor<
+  s64[2]
+  [10, 11]
+>
+//}
+
+
 === exsで利用する場合
+
+前の章でも紹介した、exsファイル中で利用する例です。
+
+exsファイル中で、@<b>{Mix.install}を利用してNxのライブラリを宣言します。
+
+//list[nx_setting_exs][exsファイルでNxを設定する: sum.exs]{
+Mix.install([{:nx, "~> 0.1.0-dev", github: "elixir-nx/nx",
+               branch: "main", sparse: "nx"}])
+
+a = [1, 2, 3, 4]
+b = [5, 6, 7, 8]
+
+#Example 1.1:
+IO.puts("Example 1.1: add a tensor")
+
+Nx.add(Nx.tensor(a), Nx.tensor(b))
+|> IO.inspect()
+//}
 
 == どんな関数があるのか
 
