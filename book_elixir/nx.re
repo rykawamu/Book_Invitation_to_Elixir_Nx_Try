@@ -1486,17 +1486,20 @@ iex> Nx.sum(tsum1, axes: [-1])
 //}
 
 
-===[column] コラム：Nx.expについて
+===[column] コラム：Nx.exp/1について
 
-ソフトマックス関数で利用した「Nx.exp」については、実はNxの関数ではありません。
+ソフトマックス関数で利用した「Nx.exp/1」については、実はNxの関数ではありません。
+@<b>{def unary_math_funs}の定義の1つです。
 
-def unary_math_funsの定義の1つです。
+ソースコード上@<fn>{nx_exp_1}では以下のように定義されていました。
 
+//list[nx_exp_1][指数関数：Erlangの関数「:math.exp」を呼び出す]{
 exp: {"exponential", quote(do: :math.exp(var!(x)))},
-
-https://github.com/elixir-nx/nx/blob/main/nx/lib/nx/shared.ex
+//}
 
 ===[/column]
+
+//footnote[nx_exp_1][@<href>{https://github.com/elixir-nx/nx/blob/main/nx/lib/nx/shared.ex}]
 
 == Nxの今後
 
