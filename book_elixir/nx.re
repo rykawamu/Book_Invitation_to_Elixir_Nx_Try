@@ -1225,9 +1225,68 @@ iex> Nx.divide(Nx.tensor([[[1,2,3],[4,5,6],[7,8,9]]]),
 //}
 
 
-=== quotient
+=== Nx.quotient/2
 
-商：2988
+#@# 商：2988
+
+引数へ2つのテンソルを渡して、要素ごとに商をします。
+
+2つのテンソルの次元次元・形状が異なっていても、ブロードキャスト演算が可能であれば計算されます。
+
+この関数は、常に整数型のテンソルを返します。
+
+//list[nx_quotient_01][テンソルの商を求める1]{
+iex> Nx.quotient(8, 2)
+#Nx.Tensor<
+  s64
+  4
+>
+
+iex> Nx.quotient(9, 2)
+#Nx.Tensor<
+  s64
+  4
+>
+
+iex> Nx.quotient(Nx.tensor([8,9,10]), 2)
+#Nx.Tensor<
+  s64[3]
+  [4, 4, 5]
+>
+//}
+
+//list[nx_quotient_02][テンソルの商を求める2：テンソル同士で計算する]{
+iex> Nx.quotient(Nx.tensor([[3, 4, 5],[6, 7, 8]]), Nx.tensor([1,2,3]))
+#Nx.Tensor<
+  s64[2][3]
+  [
+    [3, 2, 1],
+    [6, 3, 2]
+  ]
+>
+//}
+
+なお、本関数は引数のテンソルが実数型になっているとエラーが発生します。
+
+//list[nx_quotient_03][テンソルの商を求める3：実数指定で例外発生]{
+iex> Nx.quotient(9, 2)
+#Nx.Tensor<
+  s64
+  4
+>
+
+iex> Nx.quotient(9.0, 2)
+** (ArgumentError) quotient expects integer tensors as
+       inputs and outputs an integer tensor, got: {:f, 32}
+    (nx 0.1.0-dev) lib/nx.ex:3012: Nx.assert_quotient_type!/1
+    (nx 0.1.0-dev) lib/nx.ex:2571: Nx.element_wise_bin_op/4
+
+iex> Nx.quotient(9, 2.0)
+** (ArgumentError) quotient expects integer tensors as
+       inputs and outputs an integer tensor, got: {:f, 32}
+    (nx 0.1.0-dev) lib/nx.ex:3012: Nx.assert_quotient_type!/1
+    (nx 0.1.0-dev) lib/nx.ex:2571: Nx.element_wise_bin_op/4
+//}
 
 === Nx.max/2
 
