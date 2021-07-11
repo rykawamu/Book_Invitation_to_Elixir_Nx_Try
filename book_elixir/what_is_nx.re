@@ -6,7 +6,7 @@
 
 == Nxとは
 
-Nxとは、プログラミング言語Elixir用の@<b>{テンソル計算用ライブラリ}@<fn>{nx_descr}です。
+Nxとは、関数型プログラミング言語Elixir用の@<b>{テンソル計算用ライブラリ}@<fn>{nx_descr}@<fn>{cpugpu}です。
 
 「@<b>{N}umerical Eli@<b>{x}ir」から命名されています。
 
@@ -14,11 +14,21 @@ Nxとは、プログラミング言語Elixir用の@<b>{テンソル計算用ラ�
 
 ロゴには、一見するとリスにも見えるマスコットキャラ「@<b>{ヌンバット}」が描かれています。
 
-//indepimage[numbat_01][Nxのロゴ（GitHub公式ページより拝借）][scale=0.5]{
+//indepimage[numbat_01][Nxのロゴ（GitHub公式ページより拝借）][scale=0.4]{
 //}
 
 
 //footnote[nx_descr][公式ページでは、「Multi-dimensional arrays (tensors) and numerical definitions for Elixir」と紹介されています。]
+//footnote[cpugpu][本書では解説しませんがCPU/GPUに対してマルチステージコンパイルが可能です。]
+
+Nxは、GitHub上で公開されている@<fn>{nx_github}オープンソースです。
+
+//footnote[nx_github][@<href>{https://github.com/elixir-nx/nx}]
+
+Nxのリポジトリには、Nxの他にも「@<b>{EXLA}@<fn>{exla}」「@<b>{Torchx}@<fn>{torchx}」というライブラリも含まれています。ただし、その2つは本書では紹介しません。
+
+//footnote[exla][GoogleのXLA（Accelerated Linear Algebra）用のElixirクライアント。NxをCPU/GPU/TPU向けにコンパイルするためのNxライブラリも含まれています。]
+//footnote[torchx][LibTorch用のElixirクライアント。]
 
 　
 
@@ -40,7 +50,7 @@ Nxとは、プログラミング言語Elixir用の@<b>{テンソル計算用ラ�
 //blankline
 
 Nxは、Elixirの作者である@<b>{José Valim}氏の肝いりプロジェクトです。
-Elixirを動かすために必要な@<b>{Erlang}@<fn>{erlang}にプルリクエストを投げ、Nxが性能を出せるようにしたという程の力の入れようです。@<fn>{nx_version}
+Elixirを動かすために必要な@<b>{Erlang}@<fn>{erlang}にプルリクエストを投げ、Nxが性能を出せるようにしたという程の力の入れよう@<fn>{nx_version}です。
 言語の作者本人が作成しているので、ライブラリのフォローなどの保証は十分にあると考えて良いでしょう。
 
 　
