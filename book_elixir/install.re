@@ -4,7 +4,7 @@
 
 #@#Dockerを利用して、Elixir1.12をインストールする
 
-お手元の環境でDockerを利用できるのであれば、Dockerを利用するのが手軽でしょう。
+おDockerを利用できるのであれば、Dockerを利用するのが手軽です。
 
 Docker Hubには、Elixir公式のDockerのイメージ@<fn>{elixir_dockerhub}があります。
 
@@ -35,7 +35,7 @@ Interactive Elixir (1.12.2) - press Ctrl+C to exit
                             (type h() ENTER for help)
 //}
 
-また、もしもコンテナ内に入らずにホスト側でElixirコマンドを実行したければ、elixirやiexを指定してdockerコマンドを実行します。
+また、コンテナ内に入らずにホスト側でElixirコマンドを実行したければ、elixirやiexを指定してdockerコマンドを実行します。
 
 //list[docker_elixir_run3_1][ホスト側でElixirを動かす1：elixirコマンドの実行]{
 $ docker run -it --rm elixir:1.12 elixir --version
@@ -47,7 +47,7 @@ $ docker run -it --rm elixir:1.12 iex
 
 //footnote[elixir_dockerhub][@<href>{https://hub.docker.com/_/elixir}]
 
-//footnote[elixir_dockerhub_1_12][1.12系より前のバージョンでは、erlang:23で定義されているので、そのままではNxは利用できません。]
+//footnote[elixir_dockerhub_1_12][1.12系より前のバージョンでは、erlang:23以前のバージョンで定義されているので、そのままではNxは利用できません。]
 
 
 == asdfを利用する場合
