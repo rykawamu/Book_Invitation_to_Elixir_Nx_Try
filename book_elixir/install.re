@@ -52,15 +52,138 @@ $ docker run -it --rm elixir:1.12 iex
 
 == asdfを利用する場合
 
-asdfを利用して、Elixir1.12をインストールする
+#@# asdfを利用して、Elixir1.12をインストールする
+
+@<b>{asdf}とは、CLIベースのバージョン管理ツール@<fn>{asdf_homepage}です。
+特定言語に対して複数のランタイムバージョンを管理できます。
+
+//footnote[asdf_homepage][@<href>{https://asdf-vm.com/#/}]
+
+asdfがインストールされていない場合は、以下のURLを参照してasdfを実行できるようにしてください。
+なお、本書ではasdfのインストールに関しては説明は割愛します。
+
+　
+
+@<href>{https://asdf-vm.com/#/core-manage-asdf}
+
+　
+
+asdfがインストール後、プログラム言語をインストールします。
+インストールするものは、@<b>{Erlang}と@<b>{Elixir}です。
+
+以下の順序でインストールをしていきます。
+
+ * Erlang 24.x系をインストールする
+ ** Before asdf installに従って必要なライブラリをインストールする
+ ** Erlangインストール用のプラグインをインストールする
+ ** Erlangの利用バージョンを指定する
+ * Elixir 1.12系（otp24）をインストールする
+ ** Erlangインストール用のプラグインをインストールする
+ ** Erlangの利用バージョンを指定する
+
+asdf経由でErlangをインストールする場合には、以下URLの内容にしたがってセットアップしてください。
+本書では、簡略化して説明します。
+
+　
+
+@<href>{https://github.com/asdf-vm/asdf-erlang}
+
+　
+
+Erlangをインストールする前に、必要なライブラリをインストールします。
+インストールするライブラリはOSによって異なるので、詳細は以下のURLを参照してください。
+
+　
+
+@<href>{https://github.com/asdf-vm/asdf-erlang#before-asdf-install}
+
+　
+
+以下、macOSのHomebrewでインストールする前提でのライブラリのインストール手順です。
+
+//list[asdf_install_before_erlang][macOSで必要なライブラリ]{
+$ brew install autoconf
+$ brew install openssl
+$ brew install wxmac
+//}
+
+必要なライブラリをインストール後、asdfのErlangプラグインをインストールします。
+
+//list[asdf_install_plugin_erlang][asdf-erlangプラグインのインストール]{
+$ asdf plugin-add erlang https://github.com/asdf-vm/asdf-erlang.git
+//}
+
+Erlangのプラグインインストール後、Erlang24系のインストールを実施します。
+本書では、「24.0.2」をインストールしています。
+
+なお、Erlangのインストールには10-15分程度の時間がかかります。気長にお待ちください。
+
+//list[asdf_install_erlang][erlang 24.0.2のインストール]{
+$ asdf install erlang 24.0.2
+//}
+
+インストール完了後、先ほどインストールした「erlang 24.0.2」を利用可能にします。
+
+//list[asdf_global_erlang][erlang 24.0.2を利用可能にする]{
+$ asdf global erlang 24.0.2
+//}
+
+つづいて、Elixirをインストールしていきます。
+
+asdf経由でElixirをインストールする場合には、以下URLの内容にしたがってセットアップしてください。
+本書では、簡略化して説明します。
+
+　
+
+@<href>{https://github.com/asdf-vm/asdf-elixir}
+
+　
+
+//list[asdf_install_plugin_elixir][asdf-elixirプラグインのインストール]{
+$ asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git
+//}
+
+Elixirのプラグインインストール後、Elixir 1.12系OTP24のインストールを実施します。
+本書では、「1.12.1-otp-24」をインストールしています。
+なお、Elixirのインストールはすぐに完了します。
+
+//list[asdf_install_elixir][elixir 1.12.1-otp-24のインストール]{
+$ asdf install elixir 1.12.1-otp-24
+//}
+
+インストール完了後、先ほどインストールした「elixir 1.12.1-otp-24」を利用可能にします。
+
+//list[asdf_global_elixir][elixir 1.12.1-otp-24を利用可能にする]{
+$ asdf global elixir 1.12.1-otp-24
+//}
+
+//list[asdf_confirm_elixir][elixirが起動するか確認する]{
+$elixir --version
+Erlang/OTP 24 [erts-12.0.2] [source] [64-bit]
+    [smp:4:4] [ds:4:4:10] [async-threads:1] [jit]
+
+Elixir 1.12.1 (compiled with Erlang/OTP 24)
+
+$iex
+Erlang/OTP 24 [erts-12.0.2] [source] [64-bit]
+    [smp:4:4] [ds:4:4:10] [async-threads:1] [jit]
+
+Interactive Elixir (1.12.1) - press Ctrl+C to exit
+                            (type h() ENTER for help)
+iex(1)>
+//}
 
 
-===[column] Catalinaへasdfをインストールする際の留意点
 
-山崎先生のQiitaの記事に関する内容を紹介
+===[column] コラム：Catalinaへasdfをインストールする際の留意点
+
+macOSの「@<b>{Catalina}」へasdfをインストールする場合は、以下2点の留意点があります。
+
+ * kerlにパッチを当てる
+ * @<b>{DED_LDFLAGS}を付与してErlangをインストールする
+
+詳細については、山崎進（@zacky1972）氏の書かれたQiitaの記事@<fn>{asdf_catalina}をご参照ください。
 
 ===[/column]
 
-== 補足：asdf自体をインストールする場合
-
-asdfをインストールする場合はここを読んでね。
+//footnote[asdf_catalina][@<href>{https://qiita.com/zacky1972/items/b8963ac3eeca7e1edf36}]
