@@ -122,7 +122,7 @@ iex> Nx.tensor([1, 2, 3])
 >
 //}
 
-//list[nx_tensor_02_2][ベクトル（1次元）のテンソルを作る：整数]{
+//list[nx_tensor_02_2][ベクトル（1次元）のテンソルを作る：実数]{
 iex> Nx.tensor([1.2, 2.3, 3.4, 4.5])
 #Nx.Tensor<
   f32[4]
@@ -181,7 +181,7 @@ iex> Nx.tensor(t3)
 //}
 
 
-=== from_binary/2
+=== Nx.from_binary/2
 
 #@# Creates a one-dimensional tensor from a `binary` with the given `type`.（1071行目）
 
@@ -555,6 +555,7 @@ iex> t_type_1b = Nx.tensor([[1,2],[3,4]], type: {:f, 32})
 //list[nx_type_02_1][テンソルを判定する：スカラーの場合]{
 iex> Nx.type(Nx.tensor(10))
 {:s, 64}
+
 iex> Nx.type(Nx.tensor(10.1))
 {:f, 32}
 //}
