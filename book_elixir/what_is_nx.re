@@ -78,6 +78,13 @@ NxのReadmeでも、「@<i>{このプロジェクトをお楽しみになられ�
 
 ===[/column]
 
+===[column] コラム：Introducing Nx - José Valim | Lambda Days 2021
+
+2021年2月の「Lambda Days カンファレンス」にて、José Valim氏がNxを紹介する動画@<fn>{nx_jose_youtube}がYouTubeにあがっています。
+
+===[/column]
+
 //footnote[numbat_hogo_1][@<href>{https://www.numbat.org.au/}]
 //footnote[numbat_hogo_2][@<href>{https://www.australianwildlife.org/}]
 //footnote[numbat_hogo_3][ただ、日本から寄付するのは面倒かもしれません。以前、Project NumbatからPayPal経由で寄付しようとしたら、『この国からの寄付には対応してません』的なメッセージが出て寄付できませんでした。]
+//footnote[nx_jose_youtube][@<href>{https://www.youtube.com/watch?v=fPKMmJpAGWc}]
