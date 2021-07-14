@@ -66,21 +66,21 @@ Elixirを動かすために必要な@<b>{Erlang}@<fn>{erlang}にプルリクエ�
 Nxのプロジェクトのマスコットは「Numbat（ヌンバット）」と呼ばれる動物です。
 一見するとリスのようですが、和名だと「フクロアリクイ」と呼ばれています。
 
-//indepimage[numbat_02][実際のヌンバット][scale=0.5]{
-//}
-
 ヌンバットは、オーストラリア南部原産の有袋類です。
-絶滅の危機（推定では1000頭以下）に瀕しているらしく、募金が集められています。
+絶滅の危機（推定1000頭以下）に瀕しており、募金が集められています。
 
 NxのReadmeでも、「@<i>{このプロジェクトをお楽しみになられた方は、Project Numbat}@<fn>{numbat_hogo_1}@<i>{やAustralian Wildlife Conservancy}@<fn>{numbat_hogo_2}@<i>{などのNumbatの保護活動への寄付をご検討ください。}」との記述があります。
 
-もし、サポートしたいと思われた方は寄付してみてはいかがでしょうか。@<fn>{numbat_hogo_3}
+サポートしたいと思った方は寄付してみてはいかがでしょう。@<fn>{numbat_hogo_3}
+
+//indepimage[numbat_02][実際のヌンバット][scale=0.5]{
+//}
 
 ===[/column]
 
 ===[column] コラム：Introducing Nx - José Valim | Lambda Days 2021
 
-2021年2月の「Lambda Days カンファレンス」にて、José Valim氏がNxを紹介する動画@<fn>{nx_jose_youtube}がYouTubeにあがっています。
+2021年2月の@<b>{Lambda Days カンファレンス}でJosé Valim氏が語ったNxの紹介動画@<fn>{nx_jose_youtube}がYouTubeにあがっています。
 
 ===[/column]
 
