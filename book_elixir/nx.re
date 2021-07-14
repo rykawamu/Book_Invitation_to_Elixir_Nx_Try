@@ -1504,4 +1504,43 @@ exp: {"exponential", quote(do: :math.exp(var!(x)))},
 
 == Nxの今後
 
-TODO: KerasやAxonについて何かかければ。
+#@# TODO: KerasやAxonについて何かかければ。
+
+いかがでしたでしょうか？
+
+「関数の使い方はわかった。それで？　そこから先は？」となった方もいらっしゃると思います。
+
+残念ながら、本書におけるNxの説明は、以上となります。
+
+しかし、当然ながら世の中にはもっと@<b>{"先"}に進んでいる方々がいます。
+
+その、"先"に進んでいる方々の情報を2つお伝えして、本章を締めくくることにします。
+
+　
+
+1点目。「@<b>{ゼロから作るDeep Learning}」@<fn>{zero_deep}」の内容を、「Elixir + Nx」で実践されている方のQiita記事@<fn>{zero_deep_ex}があります。
+
+//footnote[zero_deep][正式には「ゼロから作るDeep Learning ―Pythonで学ぶディープラーニングの理論と実装」となります。@<href>{https://www.oreilly.co.jp/books/9784873117584/}]
+
+//footnote[zero_deep_ex][@the_haigo氏の書かれた、「Nxで始めるゼロから作るディープラーニング」シリーズの記事となります。@<href>{https://qiita.com/the_haigo/items/bedd466142aaaf01641c}]
+
+　
+
+2点目。2021年4月には、Nxで実装されたDeepLearningフレームワーク「@<b>{Axon}」@<fn>{axon}@<fn>{axon_20210408}（アクソン）が、世に出ています。
+Axonは、以下の4つのAPIをもつフレームワークです。
+
+ * Functional API
+ * Model Creation API
+ * Optimization API
+ * Training API
+
+Nxが出てくる以前は、「Elixir + Kerasでディープラーニングを行う」@<fn>{keras_qiita}という記事も多かったです。
+しかし、Axonの登場によって、この流れも変わってくるかもしれませんね。@<fn>{axon_youtube}
+
+//footnote[axon][@<href>{https://github.com/elixir-nx/axon}]
+
+//footnote[axon_20210408][@<href>{https://seanmoriarity.com/2021/04/08/axon-deep-learning-in-elixir/}]
+
+//footnote[keras_qiita][一例として紹介：@<href>{https://qiita.com/piacerex/items/c1af7b6ce472db83cff6}]
+
+//footnote[axon_youtube][@<href>{https://www.youtube.com/watch?v=NcsqGS6SVXg}]
