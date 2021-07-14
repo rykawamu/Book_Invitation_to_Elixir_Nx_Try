@@ -4,7 +4,7 @@
 
 #@#Dockerを利用して、Elixir1.12をインストールする
 
-おDockerを利用できるのであれば、Dockerを利用するのが手軽です。
+Dockerを利用できるのであれば、Dockerを利用するのが手軽です。
 
 Docker Hubには、Elixir公式のDockerのイメージ@<fn>{elixir_dockerhub}があります。
 
